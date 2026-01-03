@@ -29,4 +29,14 @@ export class BookComponent {
       'text-white': book?.name == 'Attack on Titan',
     };
   }
+
+  color: string = (this.model.getBooksId(1)?.price ?? 0) >= 299 ? 'green' : 'yellow';
+
+  getStyleBinding(id: number): Object {
+    let book = this.model.getBooksId(id);
+    return {
+      fontSize: '40px',
+      color: 'yellow',
+    };
+  }
 }

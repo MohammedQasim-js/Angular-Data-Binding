@@ -24,10 +24,13 @@ class property that will add. -->
 
 <button class="btn btn-success" [class.disabled]="disabled">Submit</button>
 
+<!--* Style Binding - define style properties for elements in Angular.  -->
 <div class="m-3" [ngClass]="getClassObject(1)">
-  <h2>First book is {{ model.getBooksId(1)?.name }}</h2>
+  <h2><span [style.color]="color">First book</span> is {{ model.getBooksId(1)?.name }}</h2>
 </div>
 
 <div class="m-3" [ngClass]="getClassObject(2)">
-  <h2>Second book is {{ model.getBooksId(2)?.name }}</h2>
+  <h2>
+    <span [ngStyle]="getStyleBinding(2)">Second book</span> is {{ model.getBooksId(2)?.name }}
+  </h2>
 </div>
