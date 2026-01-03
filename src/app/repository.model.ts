@@ -8,11 +8,14 @@ export class BookRepository {
   constructor() {
     this.dataSource = new dataSource();
     this.books = new Array<Book>();
-    // use the existing `Books` getter on dataSource (not a method named getBooks())
     this.dataSource.Books.forEach((b: Book) => this.books.push(b));
   }
 
   getBooks(): Book[] {
     return this.books;
+  }
+
+  getBooksId(id: number): Book | undefined {
+    return this.books.find((b) => b.id === id);
   }
 }

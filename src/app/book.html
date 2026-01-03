@@ -1,1 +1,33 @@
-<h1>Hi</h1>
+<h1>Book List</h1>
+<!-- <div>
+  <h3 [textContent]="book?.name"></h3>
+</div>
+<div>{{ book?.name }}</div> -->
+
+<!--* Class binding - So first, we're going to give a class value in the div, as we can see here, and we
+can equate this to a property or method from the component. Now here we need to know if a class
+definition has been made for div before, and then if a property or method is synchronized like this,
+delete the previously defined class expression, and then the property we define will be added.
+Secondly, I want to use a class property of Div, and I want to link this feature to a method or
+property like this. So this class property can be properties like Class.online or Class.Active. And
+thirdly, we can use the energy class when I want to use more than one class binding feature so we
+can use multiple classes using the energy class. Now here too I want to tell you, the values to be
+returned from the energy class should be in the form of an object, so we can specify this with a
+class property that will add. -->
+<div [class]="getClassBinding(1)">
+  <h2>First book is {{ model.getBooksId(1)?.name }}</h2>
+</div>
+
+<div [class]="getClassBinding(2)">
+  <h2>Second book is {{ model.getBooksId(2)?.name }}</h2>
+</div>
+
+<button class="btn btn-success" [class.disabled]="disabled">Submit</button>
+
+<div class="m-3" [ngClass]="getClassObject(1)">
+  <h2>First book is {{ model.getBooksId(1)?.name }}</h2>
+</div>
+
+<div class="m-3" [ngClass]="getClassObject(2)">
+  <h2>Second book is {{ model.getBooksId(2)?.name }}</h2>
+</div>
