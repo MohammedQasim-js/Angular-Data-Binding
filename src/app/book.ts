@@ -39,4 +39,14 @@ export class BookComponent {
       color: 'yellow',
     };
   }
+
+  onClick($event: any) {
+    $event.stopPropagation(); // Prevent event bubbling
+    console.log('Button was clicked!');
+    console.log(event);
+  }
+
+  onClickDiv() {
+    console.log('Div was clicked!');
+  }
 }

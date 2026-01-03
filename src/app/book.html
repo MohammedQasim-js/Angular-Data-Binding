@@ -34,3 +34,9 @@ class property that will add. -->
     <span [ngStyle]="getStyleBinding(2)">Second book</span> is {{ model.getBooksId(2)?.name }}
   </h2>
 </div>
+
+<!--* Event Binding -->
+<div (click)="onClickDiv()">
+  <Button name="first button" class="btn btn-success" (click)="onClick($event)">Submit</Button>
+  <Button name="second button" class="btn btn-success" (click)="onClick($event)">Submit</Button>
+</div>
