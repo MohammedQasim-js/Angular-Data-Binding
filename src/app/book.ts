@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { BookRepository } from './repository.model';
 import { Book } from './book.model';
 
 @Component({
   selector: 'app-book',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './book.html',
   styleUrls: ['./book.css'],
 })
@@ -55,7 +56,13 @@ export class BookComponent {
   //     console.log('Pressed enter key!');
   //   }
   // }
-  onKeyUp($event: any) {
-    console.log($event.target.value);
+  // onKeyUp($event: any) {
+  //   console.log($event.target.value);
+  // }
+
+  name = 'John';
+
+  onKeyUp() {
+    console.log(this.name);
   }
 }

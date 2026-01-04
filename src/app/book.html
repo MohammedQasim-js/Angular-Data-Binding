@@ -43,4 +43,5 @@ class property that will add. -->
 
 <!-- KeyUp Event -->
 <!-- <input (keyup)="onKeyUp($event)" /> -->
-<input (keyup.enter)="onKeyUp($event)" />
+<!-- <input [value]="name" (keyup.enter)="name = $event.target.value; onKeyUp()" /> -->
+<input [(ngModel)]="name" (keyup.enter)="onKeyUp()" />
