@@ -78,4 +78,5 @@ import { CustomPipe } from './custom.pipe';
 // }
 export class BookComponent {
   model: BookRepository = new BookRepository();
+  bookName: string | undefined = this.model.getBooksId(1)?.name;
 }

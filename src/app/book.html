@@ -73,7 +73,7 @@ class property that will add. -->
 <!--! Directives - Directives in Angular are special markers in the DOM that tell Angular to do something to a DOM element (like change its appearance, behavior, or layout). There are three types of directives in Angular: Component Directives, Structural Directives, and Attribute Directives. -->
 <!-- *ngIf - Used to conditionally include or exclude a part of the DOM based on a boolean expression. -->
 <div *ngIf="model.getBooks().length > 0; then bookList; else noBooks"></div>
-
+<br /><br />
 <!-- <div *ngIf="model.getBooks().length == 0"></div> -->
 
 <!-- [hidden] - This directive is used to hide or show an element based on a boolean expression. When the expression evaluates to true, the element is hidden; when it evaluates to false, the element is shown. -->
@@ -85,3 +85,18 @@ class property that will add. -->
 
 <ng-template #bookList> There are {{ model.getBooks().length }} books on the list. </ng-template>
 <ng-template #noBooks>There are no books on the list.</ng-template>
+<br /><br />
+
+<!-- ngSwitch - This directive is used to display one of several possible elements based on the value of an expression. -->
+<div [ngSwitch]="model.getBooks().length">
+  <span *ngSwitchCase="0">There is no Book.</span>
+  <span *ngSwitchCase="1">There is 1 Book.</span>
+  <span *ngSwitchDefault>There are many Book.</span>
+</div>
+
+<div [ngSwitch]="model.getBooksId(1)?.name">
+  <span *ngSwitchCase="bookName">Book name is Attack on Titan</span>
+  <span *ngSwitchCase="'Solo Leveling'">Book name is Solo Leveling</span>
+  <span *ngSwitchDefault>Book name is Dr. Stone</span>
+</div>
+<br /><br />
