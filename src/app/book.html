@@ -121,3 +121,22 @@ class property that will add. -->
     </li>
   </ul>
 </div>
+
+<!--* ngTemplateOutlet - This directive is used to insert a template into the DOM dynamically. It allows you to define a template and then render it in different places based on certain conditions. -->
+<ng-template
+  [ngTemplateOutlet]="bookList1"
+  [ngTemplateOutletContext]="{ books: model.getBooks() }"
+></ng-template>
+<ng-template
+  [ngTemplateOutlet]="bookList1"
+  [ngTemplateOutletContext]="{ books: model.getBooks() }"
+></ng-template>
+<ng-template #bookList1 let-books="books">
+  <div>
+    <ul>
+      <li *ngFor="let book of books">
+        {{ book.name }}
+      </li>
+    </ul>
+  </div>
+</ng-template>
