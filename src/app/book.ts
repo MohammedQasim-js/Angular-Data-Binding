@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { BookRepository } from './repository.model';
 import { Book } from './book.model';
 import { CustomPipe } from './custom.pipe';
+import { ForEmail } from './for-email';
 
 @Component({
   selector: 'app-book',
-  imports: [CommonModule, FormsModule, CustomPipe],
+  imports: [CommonModule, FormsModule, CustomPipe, ForEmail],
   templateUrl: './book.html',
   styleUrls: ['./book.css'],
 })
