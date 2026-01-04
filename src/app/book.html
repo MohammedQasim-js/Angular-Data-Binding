@@ -44,4 +44,26 @@ class property that will add. -->
 <!-- KeyUp Event -->
 <!-- <input (keyup)="onKeyUp($event)" /> -->
 <!-- <input [value]="name" (keyup.enter)="name = $event.target.value; onKeyUp()" /> -->
-<input [(ngModel)]="name" (keyup.enter)="onKeyUp()" />
+<!-- <input [(ngModel)]="name" (keyup.enter)="onKeyUp()" /> -->
+
+<!--* Angular Pipes - these are used to transform data in Angular templates. -->
+<h3>Lower-title CasePipes</h3>
+{{ name1 }} <br />
+{{ name1 | lowercase }} <br />
+{{ name1 | titlecase }}
+
+<h3>Number Case</h3>
+{{ price }} <br />
+{{ price | number }} <br />
+{{ price | number : '1.2-2' }}
+
+<h3>Date Case</h3>
+{{ today }} <br />
+{{ today | date }} <br />
+{{ today | date : 'short' }} <br />
+{{ today | date : 'medium' }} <br />
+{{ today | date : 'd/M/yy' }} <br />
+
+<!-- Custom Pipe - You can create your own custom pipes in Angular to transform data according to your specific requirements. -->
+<h3>Custom Pipe</h3>
+{{ description | custompipe }}

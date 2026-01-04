@@ -3,14 +3,22 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BookRepository } from './repository.model';
 import { Book } from './book.model';
+import { CustomPipe } from './custom.pipe';
 
 @Component({
   selector: 'app-book',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, CustomPipe],
   templateUrl: './book.html',
   styleUrls: ['./book.css'],
 })
 export class BookComponent {
+  name1: string = 'Angular Pipes';
+  price: number = 299.99667;
+  today: number = Date.now();
+
+  description: string =
+    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde perspiciatis enim animi minima incidunt ratione corporis nulla tempora dolor similique.';
+
   model: BookRepository = new BookRepository();
 
   book: Book | undefined = this.model.getBooksId(1);
@@ -60,7 +68,7 @@ export class BookComponent {
   //   console.log($event.target.value);
   // }
 
-  name = 'John';
+  name: string = 'John';
 
   onKeyUp() {
     console.log(this.name);
