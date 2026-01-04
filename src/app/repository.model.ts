@@ -18,4 +18,13 @@ export class BookRepository {
   getBooksId(id: number): Book | undefined {
     return this.books.find((b) => b.id === id);
   }
+
+  addBook(book: Book) {
+    this.books.push(book);
+  }
+
+  deleteBook(book: Book) {
+    let index = this.books.indexOf(book);
+    this.books.splice(index, 1);
+  }
 }

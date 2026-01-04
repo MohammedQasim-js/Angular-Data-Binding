@@ -108,3 +108,16 @@ class property that will add. -->
     <span *ngIf="f">is the first item.</span>
   </li>
 </ul>
+<br /><br />
+
+<!--* Change Detection - simple explanation of how Angular's change detection mechanism works to keep the user interface in sync with the underlying data model. -->
+<div>
+  <button (click)="addBook()" class="btn btn-success">Add Book</button>
+  <ul>
+    <li *ngFor="let book of model.getBooks()">
+      {{ book.name }}
+      <button (click)="deleteBook(book)" class="btn btn-danger">Delete</button>
+      <button (click)="updateBook(book)" class="btn btn-primary">Update</button>
+    </li>
+  </ul>
+</div>

@@ -79,4 +79,13 @@ import { CustomPipe } from './custom.pipe';
 export class BookComponent {
   model: BookRepository = new BookRepository();
   bookName: string | undefined = this.model.getBooksId(1)?.name;
+  addBook() {
+    this.model.addBook(new Book(4, 'Omniscient Reader Viewpoint', 'singNsong', 399));
+  }
+  deleteBook(book: Book) {
+    this.model.deleteBook(book);
+  }
+  updateBook(book: Book) {
+    book.name = 'Updated';
+  }
 }
