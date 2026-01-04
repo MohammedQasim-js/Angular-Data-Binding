@@ -4,6 +4,8 @@
 </div>
 <div>{{ book?.name }}</div> -->
 
+<!--! Data Binding   -->
+
 <!--* Class binding - So first, we're going to give a class value in the div, as we can see here, and we
 can equate this to a property or method from the component. Now here we need to know if a class
 definition has been made for div before, and then if a property or method is synchronized like this,
@@ -14,7 +16,7 @@ thirdly, we can use the energy class when I want to use more than one class bind
 can use multiple classes using the energy class. Now here too I want to tell you, the values to be
 returned from the energy class should be in the form of an object, so we can specify this with a
 class property that will add. -->
-<div [class]="getClassBinding(1)">
+<!-- <div [class]="getClassBinding(1)">
   <h2>First book is {{ model.getBooksId(1)?.name }}</h2>
 </div>
 
@@ -22,10 +24,10 @@ class property that will add. -->
   <h2>Second book is {{ model.getBooksId(2)?.name }}</h2>
 </div>
 
-<button class="btn btn-success" [class.disabled]="disabled">Submit</button>
+<button class="btn btn-success" [class.disabled]="disabled">Submit</button> -->
 
 <!--* Style Binding - define style properties for elements in Angular.  -->
-<div class="m-3" [ngClass]="getClassObject(1)">
+<!-- <div class="m-3" [ngClass]="getClassObject(1)">
   <h2><span [style.color]="color">First book</span> is {{ model.getBooksId(1)?.name }}</h2>
 </div>
 
@@ -33,13 +35,13 @@ class property that will add. -->
   <h2>
     <span [ngStyle]="getStyleBinding(2)">Second book</span> is {{ model.getBooksId(2)?.name }}
   </h2>
-</div>
+</div> -->
 
 <!--* Event Binding -->
-<div (click)="onClickDiv()">
+<!-- <div (click)="onClickDiv()">
   <Button name="first button" class="btn btn-success" (click)="onClick($event)">Submit</Button>
   <Button name="second button" class="btn btn-success" (click)="onClick($event)">Submit</Button>
-</div>
+</div> -->
 
 <!-- KeyUp Event -->
 <!-- <input (keyup)="onKeyUp($event)" /> -->
@@ -47,7 +49,7 @@ class property that will add. -->
 <!-- <input [(ngModel)]="name" (keyup.enter)="onKeyUp()" /> -->
 
 <!--* Angular Pipes - these are used to transform data in Angular templates. -->
-<h3>Lower-title CasePipes</h3>
+<!-- <h3>Lower-title CasePipes</h3>
 {{ name1 }} <br />
 {{ name1 | lowercase }} <br />
 {{ name1 | titlecase }}
@@ -62,8 +64,24 @@ class property that will add. -->
 {{ today | date }} <br />
 {{ today | date : 'short' }} <br />
 {{ today | date : 'medium' }} <br />
-{{ today | date : 'd/M/yy' }} <br />
+{{ today | date : 'd/M/yy' }} <br /> -->
 
 <!-- Custom Pipe - You can create your own custom pipes in Angular to transform data according to your specific requirements. -->
-<h3>Custom Pipe</h3>
-{{ description | custompipe }}
+<!-- <h3>Custom Pipe</h3>
+{{ description | custompipe }} -->
+
+<!--! Directives - Directives in Angular are special markers in the DOM that tell Angular to do something to a DOM element (like change its appearance, behavior, or layout). There are three types of directives in Angular: Component Directives, Structural Directives, and Attribute Directives. -->
+<!-- *ngIf - Used to conditionally include or exclude a part of the DOM based on a boolean expression. -->
+<div *ngIf="model.getBooks().length > 0; then bookList; else noBooks"></div>
+
+<!-- <div *ngIf="model.getBooks().length == 0"></div> -->
+
+<!-- [hidden] - This directive is used to hide or show an element based on a boolean expression. When the expression evaluates to true, the element is hidden; when it evaluates to false, the element is shown. -->
+<div [hidden]="model.getBooks().length == 0">
+  There are {{ model.getBooks().length }} books on the list.
+</div>
+
+<div [hidden]="model.getBooks().length != 0">There are no books on the list.</div>
+
+<ng-template #bookList> There are {{ model.getBooks().length }} books on the list. </ng-template>
+<ng-template #noBooks>There are no books on the list.</ng-template>
