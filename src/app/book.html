@@ -100,3 +100,11 @@ class property that will add. -->
   <span *ngSwitchDefault>Book name is Dr. Stone</span>
 </div>
 <br /><br />
+
+<!-- *ngFor - This directive is used to repeat a part of the DOM for each item in a collection. -->
+<ul>
+  <li *ngFor="let book of model.getBooks(); index as i; first as f">
+    {{ i + 1 }} - {{ book.name }} by {{ book.writer }} - Price: {{ book.price }}
+    <span *ngIf="f">is the first item.</span>
+  </li>
+</ul>
