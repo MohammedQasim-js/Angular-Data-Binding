@@ -49,4 +49,13 @@ export class BookComponent {
   onClickDiv() {
     console.log('Div was clicked!');
   }
+
+  // onKeyUp($event: any) {
+  //   if ($event.keyCode === 13) {
+  //     console.log('Pressed enter key!');
+  //   }
+  // }
+  onKeyUp($event: any) {
+    console.log($event.target.value);
+  }
 }

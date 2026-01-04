@@ -40,3 +40,7 @@ class property that will add. -->
   <Button name="first button" class="btn btn-success" (click)="onClick($event)">Submit</Button>
   <Button name="second button" class="btn btn-success" (click)="onClick($event)">Submit</Button>
 </div>
+
+<!-- KeyUp Event -->
+<!-- <input (keyup)="onKeyUp($event)" /> -->
+<input (keyup.enter)="onKeyUp($event)" />
