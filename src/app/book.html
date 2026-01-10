@@ -72,12 +72,12 @@ class property that will add. -->
 
 <!--! Directives - Directives in Angular are special markers in the DOM that tell Angular to do something to a DOM element (like change its appearance, behavior, or layout). There are three types of directives in Angular: Component Directives, Structural Directives, and Attribute Directives. -->
 <!-- *ngIf - Used to conditionally include or exclude a part of the DOM based on a boolean expression. -->
-<div *ngIf="model.getBooks().length > 0; then bookList; else noBooks"></div>
-<br /><br />
+<!-- <div *ngIf="model.getBooks().length > 0; then bookList; else noBooks"></div>
+<br /><br /> -->
 <!-- <div *ngIf="model.getBooks().length == 0"></div> -->
 
 <!-- [hidden] - This directive is used to hide or show an element based on a boolean expression. When the expression evaluates to true, the element is hidden; when it evaluates to false, the element is shown. -->
-<div [hidden]="model.getBooks().length == 0">
+<!-- <div [hidden]="model.getBooks().length == 0">
   There are {{ model.getBooks().length }} books on the list.
 </div>
 
@@ -85,10 +85,10 @@ class property that will add. -->
 
 <ng-template #bookList> There are {{ model.getBooks().length }} books on the list. </ng-template>
 <ng-template #noBooks>There are no books on the list.</ng-template>
-<br /><br />
+<br /><br /> -->
 
 <!-- ngSwitch - This directive is used to display one of several possible elements based on the value of an expression. -->
-<div [ngSwitch]="model.getBooks().length">
+<!-- <div [ngSwitch]="model.getBooks().length">
   <span *ngSwitchCase="0">There is no Book.</span>
   <span *ngSwitchCase="1">There is 1 Book.</span>
   <span *ngSwitchDefault>There are many Book.</span>
@@ -99,19 +99,19 @@ class property that will add. -->
   <span *ngSwitchCase="'Solo Leveling'">Book name is Solo Leveling</span>
   <span *ngSwitchDefault>Book name is Dr. Stone</span>
 </div>
-<br /><br />
+<br /><br /> -->
 
 <!-- *ngFor - This directive is used to repeat a part of the DOM for each item in a collection. -->
-<ul>
+<!-- <ul>
   <li *ngFor="let book of model.getBooks(); index as i; first as f">
     {{ i + 1 }} - {{ book.name }} by {{ book.writer }} - Price: {{ book.price }}
     <span *ngIf="f">is the first item.</span>
   </li>
 </ul>
-<br /><br />
+<br /><br /> -->
 
 <!--* Change Detection - simple explanation of how Angular's change detection mechanism works to keep the user interface in sync with the underlying data model. -->
-<div>
+<!-- <div>
   <button (click)="addBook()" class="btn btn-success">Add Book</button>
   <ul>
     <li *ngFor="let book of model.getBooks()">
@@ -120,10 +120,10 @@ class property that will add. -->
       <button (click)="updateBook(book)" class="btn btn-primary">Update</button>
     </li>
   </ul>
-</div>
+</div> -->
 
 <!--* ngTemplateOutlet - This directive is used to insert a template into the DOM dynamically. It allows you to define a template and then render it in different places based on certain conditions. -->
-<ng-template
+<!-- <ng-template
   [ngTemplateOutlet]="bookList1"
   [ngTemplateOutletContext]="{ books: model.getBooks() }"
 ></ng-template>
@@ -139,7 +139,92 @@ class property that will add. -->
       </li>
     </ul>
   </div>
-</ng-template>
+</ng-template> -->
 
 <!--* Custom Directive -->
-<input type="text" appForEmail />
+<!-- <input type="text" appForEmail /> -->
+
+<!--* Form -->
+<div class="container">
+  <div class="row">
+    <div class="col-10">
+      <div class="m-2">
+        <form #form="ngForm" (ngSubmit)="submitForm(form)">
+          <div class="bg-danger text-white" *ngIf="formSubmit && form.invalid">
+            There is an error in the form. Please correct it before submitting.
+            <ul>
+              <li *ngFor="let error of getFormValitdationErrors(form)">
+                {{ error }}
+              </li>
+            </ul>
+          </div>
+          <div class="bg-primary text-white m-3 p-3">
+            {{ jsonBook }}
+          </div>
+          <div class="form-group m-2">
+            <label>Name</label>
+            <input
+              [(ngModel)]="newBook.name"
+              minlength="3"
+              name="bName"
+              #name="ngModel"
+              type="text"
+              class="form-control"
+              required
+            />
+            <!-- <div class="alert alert-danger" *ngIf="!name.valid && name.touched"> -->
+            <div class="alert alert-danger" *ngIf="(formSubmit || name.dirty) && name.invalid">
+              <p *ngFor="let error of getValidationErrors(name, 'bName')">
+                {{ error }}
+              </p>
+              <!-- <p *ngIf="name.errors?.['required']">Name is required!</p>
+            <p *ngIf="name.errors?.['minlength']">You must enter at least 3 characters.</p> -->
+            </div>
+          </div>
+          <div class="form-group m-2">
+            <label>Writer</label>
+            <input
+              maxlength="10"
+              [(ngModel)]="newBook.writer"
+              name="bWriter"
+              #writer="ngModel"
+              type="text"
+              class="form-control"
+              required
+            />
+            <div class="alert alert-danger" *ngIf="!writer.valid && writer.touched">
+              <p *ngIf="writer.errors?.['required']">Writer is required!</p>
+              <p *ngIf="writer.errors?.['maxlength']">You must enter no more than 10 characters.</p>
+            </div>
+          </div>
+          <div class="form-group m-2">
+            <label>Price</label>
+            <input
+              pattern="[0-9]"
+              [(ngModel)]="newBook.price"
+              name="bPrice"
+              #price="ngModel"
+              type="text"
+              class="form-control"
+              required
+            />
+            <div class="alert alert-danger" *ngIf="!price.valid && price.touched">
+              <p *ngIf="price.errors?.['required']">Price is required!</p>
+              <p *ngIf="price.errors?.['pattern']">
+                You must only enter numbers. Less than 10 digits.
+              </p>
+            </div>
+          </div>
+          <button
+            (click)="addBook(newBook)"
+            class="btn btn-primary"
+            [disabled]="formSubmit && form.invalid"
+            [class.btn-secondary]="formSubmit && form.invalid"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
