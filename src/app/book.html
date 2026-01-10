@@ -145,7 +145,7 @@ class property that will add. -->
 <!-- <input type="text" appForEmail /> -->
 
 <!--* Form -->
-<div class="container">
+<!-- <div class="container">
   <div class="row">
     <div class="col-10">
       <div class="m-2">
@@ -171,15 +171,15 @@ class property that will add. -->
               type="text"
               class="form-control"
               required
-            />
-            <!-- <div class="alert alert-danger" *ngIf="!name.valid && name.touched"> -->
-            <div class="alert alert-danger" *ngIf="(formSubmit || name.dirty) && name.invalid">
+            /> -->
+<!-- <div class="alert alert-danger" *ngIf="!name.valid && name.touched"> -->
+<!-- <div class="alert alert-danger" *ngIf="(formSubmit || name.dirty) && name.invalid">
               <p *ngFor="let error of getValidationErrors(name, 'bName')">
                 {{ error }}
-              </p>
-              <!-- <p *ngIf="name.errors?.['required']">Name is required!</p>
+              </p> -->
+<!-- <p *ngIf="name.errors?.['required']">Name is required!</p>
             <p *ngIf="name.errors?.['minlength']">You must enter at least 3 characters.</p> -->
-            </div>
+<!-- </div>
           </div>
           <div class="form-group m-2">
             <label>Writer</label>
@@ -227,4 +227,46 @@ class property that will add. -->
       </div>
     </div>
   </div>
+</div> -->
+
+<!-- Reactive Form -->
+<div class="m-4">
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <div class="form-group m-2">
+      <label>Name</label>
+      <input class="form-control" formControlName="name" />
+      <!-- <input class="form-control" [formControl]="name" /> -->
+      <div class="alert alert-danger" *ngIf="name?.touched && name?.invalid">
+        <ul>
+          <li *ngIf="name?.errors?.['required']">Name is Required!</li>
+          <li *ngIf="name?.errors?.['minlength']">You must enter at least 3 characters.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="form-group m-2">
+      <label>Writer</label>
+      <input class="form-control" formControlName="writer" />
+      <!-- <input class="form-control" [formControl]="writer" /> -->
+    </div>
+    <div class="form-group m-2">
+      <label>Price</label>
+      <input class="form-control" formControlName="price" />
+      <!-- <input class="form-control" [formControl]="price" /> -->
+    </div>
+    <div class="form-group m-2">
+      <label>Image</label>
+      <input class="form-control" formControlName="image" />
+      <div class="alert alert-danger" *ngIf="image?.touched && image?.invalid">
+        <ul>
+          <li *ngIf="image?.errors?.['required']">Image is Required!</li>
+          <li *ngIf="image?.errors?.['wrongExtension']">
+            Invalid image extension. Only .jpg and .png are allowed.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <button type="submit" (click)="updateBook()" class="btn btn-primary m-2">Submit</button>
+    <!-- <button type="submit" (click)="updateName()" class="btn btn-primary m-2">Submit</button> -->
+  </form>
 </div>
