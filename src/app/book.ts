@@ -13,10 +13,20 @@ import { Book } from './book.model';
 import { CustomPipe } from './custom.pipe';
 import { ForEmail } from './for-email';
 import { ImageValidator } from './image.validator';
+import { HttpClientModule } from '@angular/common/http';
+import { PostComponent } from './post/post';
 
 @Component({
   selector: 'app-book',
-  imports: [CommonModule, FormsModule, CustomPipe, ForEmail, ReactiveFormsModule],
+  imports: [
+    PostComponent,
+    CommonModule,
+    FormsModule,
+    CustomPipe,
+    ForEmail,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   templateUrl: './book.html',
   styleUrls: ['./book.css'],
 })
